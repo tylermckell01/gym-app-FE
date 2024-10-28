@@ -1,0 +1,69 @@
+.user-page-container {
+  .new-user-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .page-title {
+      background-color: $tab-links;
+      width: 20%;
+      margin: 200px 30px 30px 30px;
+      padding: 20px;
+      font-size: x-large;
+      border-radius: 10px;
+      align-self: flex-start;
+    }
+
+    .new-user-form {
+      border: solid 2px $tab-links;
+      border-radius: 10px;
+      margin-top: 50px;
+      padding: 10px;
+      width: 30vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: $card-background;
+
+      input {
+        width: fit-content;
+      }
+    }
+
+    .existing-users-wrapper {
+      background-color: $tab-links;
+      width: 20%;
+      margin: 100px 30px 30px;
+      padding: 20px;
+      font-size: x-large;
+      border-radius: 10px;
+      align-self: flex-start;
+    }
+  }
+
+  .existing-users {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 60px;
+    gap: 20px;
+
+    .user-wrapper {
+      display: flex;
+      flex-direction: column;
+      border: solid 2px $tab-links;
+
+      padding: 10px;
+      background-color: $card-background;
+      border-radius: 10px;
+      width: 90%;
+
+      input {
+        width: fit-content;
+      }
+
+      button {
+        width: fit-content;
+      }
+    }
+  }
+}

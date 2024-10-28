@@ -1,0 +1,78 @@
+.my-workouts {
+  text-align: center;
+
+  .workout-page-title {
+    background-color: $tab-links;
+    width: 20%;
+    margin: 200px 30px 30px 30px;
+
+    padding: 20px;
+    font-size: x-large;
+    border-radius: 10px;
+  }
+
+  .cards-wrapper {
+    text-align: left;
+    // border: solid 1px blue;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 40px 70px 70px 70px;
+    gap: 20px;
+
+    .workout-info {
+      display: flex;
+      flex-direction: column;
+      border: solid 2px $tab-links;
+      padding: 10px;
+      background-color: $card-background;
+      border-radius: 10px;
+      width: 90%;
+
+      .button-container {
+        display: flex;
+        justify-content: flex-end;
+        padding-right: 10px;
+
+        button {
+          padding: 10px;
+          border-radius: 10px;
+
+          &:hover {
+            background-color: $tab-links;
+            cursor: pointer;
+          }
+        }
+      }
+
+      .title {
+        margin: 5px 0;
+
+        input {
+          background-color: lightgrey;
+          padding: 5px 5px 5px 10px;
+          margin-left: 5px;
+          border-radius: 10px;
+          border: none;
+        }
+      }
+
+      .edit-modal {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+        gap: 10px;
+
+        button {
+          padding: 10px;
+          border-radius: 10px;
+          border: none;
+
+          &:hover {
+            background-color: $tab-links;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}

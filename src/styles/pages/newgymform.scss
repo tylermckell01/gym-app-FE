@@ -1,0 +1,61 @@
+.gym-page-container {
+  .gym-form {
+    .new-gym-form-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .page-title {
+        background-color: $tab-links;
+        width: 20%;
+        margin: 30px;
+        padding: 20px;
+        font-size: x-large;
+        border-radius: 10px;
+        align-self: flex-start;
+      }
+
+      .new-gym-form {
+        border: solid 2px $tab-links;
+        border-radius: 10px;
+        padding: 10px;
+        width: 30vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: $card-background;
+
+        input {
+          width: 200px;
+        }
+
+        button {
+          margin-top: 10px;
+          padding: 10px;
+          border-radius: 10px;
+        }
+      }
+    }
+  }
+
+  .existing-gyms {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 60px;
+    gap: 20px;
+
+    .gym-wrapper {
+      display: flex;
+      flex-direction: column;
+      border: solid 2px $tab-links;
+      padding: 10px;
+      background-color: $card-background;
+      border-radius: 10px;
+      width: 90%;
+
+      button {
+        width: fit-content;
+      }
+    }
+  }
+}

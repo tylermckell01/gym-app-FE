@@ -1,0 +1,51 @@
+.new-workout-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .page-title {
+    background-color: $tab-links;
+    width: 20%;
+    margin: 200px 30px 30px 30px;
+    padding: 20px;
+    font-size: x-large;
+    border-radius: 10px;
+    align-self: flex-start;
+  }
+
+  .new-workout-form {
+    border: solid 2px $tab-links;
+    border-radius: 10px;
+    padding: 10px;
+    width: 30vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: $card-background;
+
+    div {
+      display: flex;
+      flex-direction: column;
+
+      input {
+        width: 200px;
+        background-color: lightgrey;
+        padding: 5px 5px 5px 10px;
+        margin: 5px 0 5px 0;
+        border-radius: 10px;
+        border: none;
+      }
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 10px;
+      border: none;
+
+      &:hover {
+        background-color: $tab-links;
+      }
+    }
+  }
+}
