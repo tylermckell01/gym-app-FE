@@ -7,7 +7,7 @@ export default function MyWorkouts() {
     <div className="my-workouts">
       <MyWorkoutCards />
       <NavLink to="/add-workout" className="header-link">
-        + New Client
+        + New Workout
       </NavLink>
     </div>
   );

@@ -17,32 +17,28 @@ export default function AuthHeader() {
     <div className="header-container">
       <div className="header-wrapper">
         <NavLink to="/landing-page" className="header-link">
-          Client Tracker
+          Workout Tracker
         </NavLink>
 
         <NavLink to="/my-workouts" className="header-link">
-          My Clients
+          My Workouts
         </NavLink>
 
         <NavLink to="/add-workout" className="header-link">
-          + Client
+          + Workout
         </NavLink>
 
-        {/* <NavLink to="/add-gym" className="header-link">
+        <NavLink to="/add-gym" className="header-link">
           Gyms
         </NavLink>
 
         <NavLink to="/add-exercise" className="header-link">
           Exercises
-        </NavLink> */}
-
-        <NavLink to="/add-user" className="header-link">
-          Users
         </NavLink>
 
-        {/* <button onClick={handleLogout} className="header-link">
-          Log Out
-        </button> */}
+        {/* <NavLink to="/add-user" className="header-link">
+          Users
+        </NavLink> */}
 
         <NavLink to="login" onClick={handleLogout} className="header-link">
           Log Out

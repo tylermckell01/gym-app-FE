@@ -5,7 +5,7 @@ export default function Footer() {
     <div className="footer-container">
       <div className="footer-wrapper">
         <NavLink to="/add-workout" className="footer-link">
-          + New Client
+          + New Workout
         </NavLink>
       </div>
     </div>

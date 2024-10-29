@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 
 export default function NewWorkoutForm() {
@@ -6,9 +6,33 @@ export default function NewWorkoutForm() {
     workout_name: "",
     description: "",
     length: 0,
-    notes: "",
+    // notes: "",
     user_id: Cookies.get("user_id"),
   });
+  const [exercises, setExercises] = useState([]);
+  const [selectedExercises, setSelectedExercises] = useState([]);
+
+  useEffect(() => {
+    fetchExercises();
+  }, []);
+
+  const fetchExercises = async () => {
+    const authToken = Cookies.get("auth_token");
+
+    const response = await fetch("http://127.0.0.1:8086/exercises", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        auth: authToken,
+      },
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      setExercises(data.result);
+      // console.log(exercises);
+    }
+  };
 
   const handleFieldUpdate = (e) => {
     const { name, value } = e.target;
@@ -16,10 +40,34 @@ export default function NewWorkoutForm() {
     setFormData((previous) => ({ ...previous, [name]: value }));
   };
 
+  const handleExerciseSelect = (e) => {
+    const exerciseId = e.target.value;
+    setSelectedExercises((prev) => [...prev, exerciseId]);
+  };
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+
+  //   let authToken = Cookies.get("auth_token");
+  //   const response = await fetch("http://127.0.0.1:8086/workout", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       auth: authToken,
+  //     },
+  //     body: JSON.stringify(formData),
+  //   });
+
+  //   if (response.ok) {
+
+  //     setFormData({ workout_name: "", description: "", length: 0, notes: "" });
+  //     return response;
+  //   }
+  // };
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    let authToken = Cookies.get("auth_token");
+    const authToken = Cookies.get("auth_token");
     const response = await fetch("http://127.0.0.1:8086/workout", {
       method: "POST",
       headers: {
@@ -29,19 +77,43 @@ export default function NewWorkoutForm() {
       body: JSON.stringify(formData),
     });
 
-    if (response) {
-      setFormData({ workout_name: "", description: "", length: 0, notes: "" });
-      return response;
+    if (response.ok) {
+      const workoutData = await response.json();
+      const workoutId = workoutData.result.workout_id;
+
+      // Associate selected exercises with the workout
+      selectedExercises.forEach(async (exerciseId) => {
+        await fetch("http://127.0.0.1:8086/workout/exercise", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            auth: authToken,
+          },
+          body: JSON.stringify({
+            workout_id: workoutId,
+            exercise_id: exerciseId,
+          }),
+        });
+      });
+
+      // Reset form
+      setFormData({
+        workout_name: "",
+        description: "",
+        length: 0,
+        user_id: Cookies.get("user_id"),
+      });
+      setSelectedExercises([]);
     }
   };
 
   return (
     <div className="new-workout-form-container">
-      <div className="page-title">Add all your favorite clients in Here!</div>
+      <div className="page-title">Add all your favorite workouts here!</div>
       <form onSubmit={handleSubmit}>
         <div className="new-workout-form">
           <div className="name-wrapper">
-            <label htmlFor="workout-name">Name: </label>
+            <label htmlFor="workout-name">Exercise Name: </label>
             <input
               id="workout-name"
               name="workout_name"
@@ -52,7 +124,7 @@ export default function NewWorkoutForm() {
             />
           </div>
           <div className="address-wrapper">
-            <label htmlFor="workout-description">Address: </label>
+            <label htmlFor="workout-description">Description: </label>
             <input
               id="workout-description"
               name="description"
@@ -64,7 +136,7 @@ export default function NewWorkoutForm() {
           </div>
 
           <div className="rate-wrapper">
-            <label htmlFor="workout-length">Rate (weekly):</label>
+            <label htmlFor="workout-length">Length (hrs):</label>
             <input
               id="workout-length"
               name="length"
@@ -75,7 +147,19 @@ export default function NewWorkoutForm() {
             />
           </div>
 
-          <div className="notes-wrapper">
+          <div className="exercise-wrapper">
+            <label htmlFor="exercise-select">Add Exercises:</label>
+            <select id="exercise-select" onChange={handleExerciseSelect}>
+              <option value="">Select an exercise</option>
+              {exercises.map((exercise) => (
+                <option key={exercise.exercise_id} value={exercise.exercise_id}>
+                  {exercise.exercise_name}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* <div className="notes-wrapper">
             <label htmlFor="notes">Additional Notes:</label>
             <input
               id="notes"
@@ -85,9 +169,9 @@ export default function NewWorkoutForm() {
               className="notes"
               onChange={handleFieldUpdate}
             />
-          </div>
+          </div> */}
 
-          <button type="submit">Add this Client!</button>
+          <button type="submit">Add this Workout!</button>
         </div>
       </form>
     </div>
