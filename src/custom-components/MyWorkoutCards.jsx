@@ -54,7 +54,6 @@ export default function MyWorkoutCards() {
       description,
       length,
     };
-
     const response = await fetch(
       `http://127.0.0.1:8086/workout/${editingWorkout.workout_id}`,
       {
@@ -89,7 +88,6 @@ export default function MyWorkoutCards() {
           "Content-Type": "application/json",
           auth: authToken,
         },
-        // body: JSON.stringify({ workout_id: workout.workout_id }),
       }
     );
 
@@ -139,6 +137,30 @@ export default function MyWorkoutCards() {
       cancelEditExercise();
     } else {
       console.error("Failed to update exercise for workout");
+    }
+  };
+
+  const addExerciseToWorkout = async (workoutId) => {
+    if (!selectedExerciseId) return;
+    let authToken = Cookies.get("auth_token");
+
+    const response = await fetch("http://127.0.0.1:8086/workout/exercise", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        auth: authToken,
+      },
+      body: JSON.stringify({
+        workout_id: workoutId,
+        exercise_id: selectedExerciseId,
+      }),
+    });
+
+    if (response.ok) {
+      await fetchWorkoutData();
+      setSelectedExerciseId(null);
+    } else {
+      console.error("Failed to add exercise to workout");
     }
   };
 
@@ -249,6 +271,28 @@ export default function MyWorkoutCards() {
                 )}
               </li>
             ))}
+            {isEditing && editingWorkout.workout_id === workout.workout_id && (
+              <li>
+                <select
+                  onChange={(e) => setSelectedExerciseId(e.target.value)}
+                  value={selectedExerciseId || ""}
+                >
+                  <option value="" disabled>
+                    Select an exercise to add
+                  </option>
+                  {allExercises.map((ex) => (
+                    <option key={ex.exercise_id} value={ex.exercise_id}>
+                      {ex.exercise_name}
+                    </option>
+                  ))}
+                </select>
+                <button
+                  onClick={() => addExerciseToWorkout(workout.workout_id)}
+                >
+                  Add Exercise
+                </button>
+              </li>
+            )}
           </ul>
         </div>
 

@@ -45,26 +45,8 @@ export default function NewWorkoutForm() {
     setSelectedExercises((prev) => [...prev, exerciseId]);
   };
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-
-  //   let authToken = Cookies.get("auth_token");
-  //   const response = await fetch("http://127.0.0.1:8086/workout", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       auth: authToken,
-  //     },
-  //     body: JSON.stringify(formData),
-  //   });
-
-  //   if (response.ok) {
-
-  //     setFormData({ workout_name: "", description: "", length: 0, notes: "" });
-  //     return response;
-  //   }
-  // };
   const handleSubmit = async (e) => {
+    console.log(formData);
     e.preventDefault();
 
     const authToken = Cookies.get("auth_token");
@@ -80,8 +62,8 @@ export default function NewWorkoutForm() {
     if (response.ok) {
       const workoutData = await response.json();
       const workoutId = workoutData.result.workout_id;
+      console.log(response);
 
-      // Associate selected exercises with the workout
       selectedExercises.forEach(async (exerciseId) => {
         await fetch("http://127.0.0.1:8086/workout/exercise", {
           method: "POST",
@@ -96,7 +78,6 @@ export default function NewWorkoutForm() {
         });
       });
 
-      // Reset form
       setFormData({
         workout_name: "",
         description: "",
@@ -113,7 +94,7 @@ export default function NewWorkoutForm() {
       <form onSubmit={handleSubmit}>
         <div className="new-workout-form">
           <div className="name-wrapper">
-            <label htmlFor="workout-name">Exercise Name: </label>
+            <label htmlFor="workout-name">Workout Name: </label>
             <input
               id="workout-name"
               name="workout_name"
