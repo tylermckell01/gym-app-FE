@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { useAuthInfo } from "../context/AuthContext";
+import { useHistory } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import Cookies from "js-cookie";
 
 export default function LoginForm() {
   const { login } = useAuthInfo();
+  const history = useHistory();
 
   const [loginCreds, setLoginCreds] = useState({
     email: "",
@@ -37,7 +39,7 @@ export default function LoginForm() {
 
       // Cookies.set("user_id", response.auth_info.user.user_id);
       localStorage.setItem("user_id", response.auth_info.user.user_id);
-
+      history.push("my-workouts");
       return response;
     }
   };
