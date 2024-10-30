@@ -1,19 +1,18 @@
 .footer-container {
-  // margin-top: 310px;
   width: 100%;
   height: 75px;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  // bottom: 0;
+  bottom: 0;
   // position: fixed;
   background-color: $nav-background;
-  color: $tab-links;
+  // color: $tab-links;
   font-size: x-large;
+  // z-index: 0;
 
   .footer-link {
     z-index: 1;
-    // margin-bottom: 250px;
     color: $tab-links;
     // padding: 15px;
     border-radius: 10px;

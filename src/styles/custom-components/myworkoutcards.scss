@@ -1,75 +1,79 @@
 .my-workouts {
   text-align: center;
 
-  .workout-page-title {
-    background-color: $tab-links;
-    width: 20%;
-    margin: 200px 30px 30px 30px;
+  .my-workout-cards-container {
+    margin-bottom: 30px;
 
-    padding: 20px;
-    font-size: x-large;
-    border-radius: 10px;
-  }
-
-  .cards-wrapper {
-    text-align: left;
-    // border: solid 1px blue;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    padding: 40px 70px 70px 70px;
-    gap: 20px;
-
-    .workout-info {
-      display: flex;
-      flex-direction: column;
-      border: solid 2px $tab-links;
-      padding: 10px;
-      background-color: $card-background;
+    .workout-page-title {
+      background-color: $tab-links;
+      width: 20%;
+      margin: 30px;
+      padding: 20px;
+      font-size: x-large;
       border-radius: 10px;
-      width: 90%;
+    }
 
-      .button-container {
+    .cards-wrapper {
+      text-align: left;
+      // border: solid 1px blue;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      padding: 0 70px;
+      // margin-bottom: 50px;
+      gap: 20px;
+
+      .workout-info {
         display: flex;
-        justify-content: flex-end;
-        padding-right: 10px;
+        flex-direction: column;
+        border: solid 2px $tab-links;
+        padding: 10px;
+        background-color: $card-background;
+        border-radius: 10px;
+        width: 90%;
 
-        button {
-          padding: 10px;
-          border-radius: 10px;
+        .button-container {
+          display: flex;
+          justify-content: flex-end;
+          padding-right: 10px;
 
-          &:hover {
-            background-color: $tab-links;
-            cursor: pointer;
+          button {
+            padding: 10px;
+            border-radius: 10px;
+
+            &:hover {
+              background-color: $tab-links;
+              cursor: pointer;
+            }
           }
         }
-      }
 
-      .title {
-        margin: 5px 0;
+        .title {
+          margin: 5px 0;
 
-        input {
-          background-color: lightgrey;
-          padding: 5px 5px 5px 10px;
-          margin-left: 5px;
-          border-radius: 10px;
-          border: none;
+          input {
+            background-color: lightgrey;
+            padding: 5px 5px 5px 10px;
+            margin-left: 5px;
+            border-radius: 10px;
+            border: none;
+          }
         }
-      }
 
-      .edit-modal {
-        display: flex;
-        justify-content: center;
-        margin-top: 10px;
-        gap: 10px;
+        .edit-modal {
+          display: flex;
+          justify-content: center;
+          margin-top: 10px;
+          gap: 10px;
 
-        button {
-          padding: 10px;
-          border-radius: 10px;
-          border: none;
+          button {
+            padding: 10px;
+            border-radius: 10px;
+            border: none;
 
-          &:hover {
-            background-color: $tab-links;
-            cursor: pointer;
+            &:hover {
+              background-color: $tab-links;
+              cursor: pointer;
+            }
           }
         }
       }

@@ -1,4 +1,11 @@
+html,
 body {
   margin: 0;
   background-color: lightgray;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
