@@ -32,8 +32,12 @@ export default function LoginForm() {
 
     if (response) {
       login();
-      Cookies.set("auth_token", response.auth_info.auth_token);
-      Cookies.set("user_id", response.auth_info.user.user_id);
+      // Cookies.set("auth_token", response.auth_info.auth_token);
+      localStorage.setItem("auth_token", response.auth_info.auth_token);
+
+      // Cookies.set("user_id", response.auth_info.user.user_id);
+      localStorage.setItem("user_id", response.auth_info.user.user_id);
+
       return response;
     }
   };

@@ -23,7 +23,9 @@ export default function NewExerciseForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    let authToken = Cookies.get("auth_token");
+    // let authToken = Cookies.get("auth_token");
+    let authToken = localStorage.getItem("auth_token");
+
     const response = await fetch("http://127.0.0.1:8086/exercise", {
       method: "POST",
       headers: {
@@ -41,7 +43,8 @@ export default function NewExerciseForm() {
   };
 
   const deleteExercise = async (exerciseId) => {
-    let authToken = Cookies.get("auth_token");
+    // let authToken = Cookies.get("auth_token");
+    let authToken = localStorage.getItem("auth_token");
 
     const response = await fetch(
       `http://127.0.0.1:8086/exercise/delete/${exerciseId}`,
@@ -70,7 +73,8 @@ export default function NewExerciseForm() {
       return;
     }
 
-    let authToken = Cookies.get("auth_token");
+    // let authToken = Cookies.get("auth_token");
+    let authToken = localStorage.getItem("auth_token");
 
     const response = await fetch(
       `http://127.0.0.1:8086/exercise/${exercise.exercise_id}`,

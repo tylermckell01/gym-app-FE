@@ -9,7 +9,8 @@ export default function AuthHeader() {
 
   const handleLogout = () => {
     logout();
-    Cookies.remove("auth_token");
+    // Cookies.remove("auth_token");
+    localStorage.removeItem("auth_token");
     history.push("/");
   };
 

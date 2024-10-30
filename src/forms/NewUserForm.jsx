@@ -21,7 +21,9 @@ export default function NewUserForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let authToken = Cookies.get("auth_token");
+    // let authToken = Cookies.get("auth_token");
+    let authToken = localStorage.getItem("auth_token");
+
     const response = await fetch("http://127.0.0.1:8086/user", {
       method: "POST",
       headers: {
@@ -46,7 +48,9 @@ export default function NewUserForm() {
   };
 
   const fetchUserData = async () => {
-    let authToken = Cookies.get("auth_token");
+    // let authToken = Cookies.get("auth_token");
+    let authToken = localStorage.getItem("auth_token");
+
     await fetch("http://127.0.0.1:8086/users", {
       method: "GET",
       headers: {
@@ -137,7 +141,8 @@ export default function NewUserForm() {
     if (!editedUserData) {
       return;
     }
-    let authToken = Cookies.get("auth_token");
+    // let authToken = Cookies.get("auth_token");
+    let authToken = localStorage.getItem("auth_token");
 
     const response = await fetch(`http://127.0.0.1:8086/user/${user.user_id}`, {
       method: "PUT",
@@ -156,7 +161,8 @@ export default function NewUserForm() {
   };
 
   const deleteUser = async (user) => {
-    let authToken = Cookies.get("auth_token");
+    // let authToken = Cookies.get("auth_token");
+    let authToken = localStorage.getItem("auth_token");
 
     const response = await fetch(
       `http://127.0.0.1:8086/user/delete/${user.user_id}`,

@@ -16,8 +16,12 @@ export default function MyWorkoutCards() {
   }, []);
 
   const fetchWorkoutData = async () => {
-    let authToken = Cookies.get("auth_token");
-    let userId = Cookies.get("user_id");
+    // let authToken = Cookies.get("auth_token");
+    let authToken = localStorage.getItem("auth_token");
+
+    let userId = localStorage.getItem("user_id");
+
+    // let userId = Cookies.get("user_id");
 
     await fetch(`http://127.0.0.1:8086/workouts/${userId}`, {
       method: "GET",
@@ -31,7 +35,8 @@ export default function MyWorkoutCards() {
   };
 
   const fetchAllExercises = async () => {
-    let authToken = Cookies.get("auth_token");
+    // let authToken = Cookies.get("auth_token");
+    let authToken = localStorage.getItem("auth_token");
 
     const response = await fetch("http://127.0.0.1:8086/exercises", {
       method: "GET",
@@ -47,7 +52,9 @@ export default function MyWorkoutCards() {
   const saveEditedWorkout = async () => {
     if (!editingWorkout) return;
 
-    let authToken = Cookies.get("auth_token");
+    // let authToken = Cookies.get("auth_token");
+    let authToken = localStorage.getItem("auth_token");
+
     const { workout_name, description, length } = editingWorkout;
     const updatedWorkoutInfo = {
       workout_name,
@@ -78,7 +85,8 @@ export default function MyWorkoutCards() {
   };
 
   const deleteWorkout = async (workout) => {
-    let authToken = Cookies.get("auth_token");
+    // let authToken = Cookies.get("auth_token");
+    let authToken = localStorage.getItem("auth_token");
 
     const response = await fetch(
       `http://127.0.0.1:8086/workout/delete/${workout.workout_id}`,
@@ -109,7 +117,8 @@ export default function MyWorkoutCards() {
   };
 
   const saveExerciseEdit = async (workoutId, exerciseId) => {
-    let authToken = Cookies.get("auth_token");
+    // let authToken = Cookies.get("auth_token");
+    let authToken = localStorage.getItem("auth_token");
 
     await fetch("http://127.0.0.1:8086/workout/exercise", {
       method: "DELETE",
@@ -142,7 +151,8 @@ export default function MyWorkoutCards() {
 
   const addExerciseToWorkout = async (workoutId) => {
     if (!selectedExerciseId) return;
-    let authToken = Cookies.get("auth_token");
+    // let authToken = Cookies.get("auth_token");
+    let authToken = localStorage.getItem("auth_token");
 
     const response = await fetch("http://127.0.0.1:8086/workout/exercise", {
       method: "POST",

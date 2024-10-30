@@ -7,7 +7,7 @@ export default function NewWorkoutForm() {
     description: "",
     length: 0,
     // notes: "",
-    user_id: Cookies.get("user_id"),
+    user_id: localStorage.getItem("user_id"),
   });
   const [exercises, setExercises] = useState([]);
   const [selectedExercises, setSelectedExercises] = useState([]);
@@ -17,7 +17,8 @@ export default function NewWorkoutForm() {
   }, []);
 
   const fetchExercises = async () => {
-    const authToken = Cookies.get("auth_token");
+    // const authToken = Cookies.get("auth_token");
+    const authToken = localStorage.getItem("auth_token");
 
     const response = await fetch("http://127.0.0.1:8086/exercises", {
       method: "GET",
@@ -49,7 +50,9 @@ export default function NewWorkoutForm() {
     console.log(formData);
     e.preventDefault();
 
-    const authToken = Cookies.get("auth_token");
+    // const authToken = Cookies.get("auth_token");
+    let authToken = localStorage.getItem("auth_token");
+
     const response = await fetch("http://127.0.0.1:8086/workout", {
       method: "POST",
       headers: {
@@ -82,7 +85,7 @@ export default function NewWorkoutForm() {
         workout_name: "",
         description: "",
         length: 0,
-        user_id: Cookies.get("user_id"),
+        user_id: localStorage.getItem("user_id"),
       });
       setSelectedExercises([]);
     }
