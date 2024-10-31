@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { useAuthInfo } from "../context/AuthContext";
 import { useHistory } from "react-router-dom";
-import { NavLink } from "react-router-dom";
-import Cookies from "js-cookie";
 
 export default function LoginForm() {
   const { login } = useAuthInfo();

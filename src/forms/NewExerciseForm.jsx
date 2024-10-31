@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import Cookies from "js-cookie";
 
 export default function NewExerciseForm() {
   const [formData, setFormData] = useState({

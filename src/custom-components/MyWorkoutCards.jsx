@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import Cookies from "js-cookie";
 
 export default function MyWorkoutCards() {
   const [yourWorkoutData, setYourWorkoutData] = useState([]);
