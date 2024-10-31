@@ -18,7 +18,6 @@ export default function NewGymForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // let authToken = Cookies.get("auth_token");
     let authToken = localStorage.getItem("auth_token");
 
     const response = await fetch("http://127.0.0.1:8086/gym", {
@@ -40,7 +39,6 @@ export default function NewGymForm() {
   };
 
   const deleteGym = async (gymId) => {
-    // let authToken = Cookies.get("auth_token");
     let authToken = localStorage.getItem("auth_token");
 
     const response = await fetch(`http://127.0.0.1:8086/gym/delete/${gymId}`, {
@@ -65,7 +63,6 @@ export default function NewGymForm() {
     if (!editedGymName) {
       return;
     }
-    // let authToken = Cookies.get("auth_token");
     let authToken = localStorage.getItem("auth_token");
 
     const response = await fetch(`http://127.0.0.1:8086/gym/${gym.gym_id}`, {
@@ -84,7 +81,6 @@ export default function NewGymForm() {
   };
 
   const fetchGymData = async () => {
-    // let authToken = Cookies.get("auth_token");
     let authToken = localStorage.getItem("auth_token");
 
     await fetch("http://127.0.0.1:8086/gyms", {

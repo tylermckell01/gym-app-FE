@@ -16,12 +16,8 @@ export default function MyWorkoutCards() {
   }, []);
 
   const fetchWorkoutData = async () => {
-    // let authToken = Cookies.get("auth_token");
     let authToken = localStorage.getItem("auth_token");
-
     let userId = localStorage.getItem("user_id");
-
-    // let userId = Cookies.get("user_id");
 
     await fetch(`http://127.0.0.1:8086/workouts/${userId}`, {
       method: "GET",
@@ -35,7 +31,6 @@ export default function MyWorkoutCards() {
   };
 
   const fetchAllExercises = async () => {
-    // let authToken = Cookies.get("auth_token");
     let authToken = localStorage.getItem("auth_token");
 
     const response = await fetch("http://127.0.0.1:8086/exercises", {
@@ -52,7 +47,6 @@ export default function MyWorkoutCards() {
   const saveEditedWorkout = async () => {
     if (!editingWorkout) return;
 
-    // let authToken = Cookies.get("auth_token");
     let authToken = localStorage.getItem("auth_token");
 
     const { workout_name, description, length } = editingWorkout;
@@ -85,7 +79,6 @@ export default function MyWorkoutCards() {
   };
 
   const deleteWorkout = async (workout) => {
-    // let authToken = Cookies.get("auth_token");
     let authToken = localStorage.getItem("auth_token");
 
     const response = await fetch(
@@ -117,7 +110,6 @@ export default function MyWorkoutCards() {
   };
 
   const saveExerciseEdit = async (workoutId, exerciseId) => {
-    // let authToken = Cookies.get("auth_token");
     let authToken = localStorage.getItem("auth_token");
 
     await fetch("http://127.0.0.1:8086/workout/exercise", {
@@ -151,7 +143,6 @@ export default function MyWorkoutCards() {
 
   const addExerciseToWorkout = async (workoutId) => {
     if (!selectedExerciseId) return;
-    // let authToken = Cookies.get("auth_token");
     let authToken = localStorage.getItem("auth_token");
 
     const response = await fetch("http://127.0.0.1:8086/workout/exercise", {
@@ -283,19 +274,6 @@ export default function MyWorkoutCards() {
             ))}
             {isEditing && editingWorkout.workout_id === workout.workout_id && (
               <li>
-                <select
-                  onChange={(e) => setSelectedExerciseId(e.target.value)}
-                  value={selectedExerciseId || ""}
-                >
-                  <option value="" disabled>
-                    Select an exercise to add
-                  </option>
-                  {allExercises.map((ex) => (
-                    <option key={ex.exercise_id} value={ex.exercise_id}>
-                      {ex.exercise_name}
-                    </option>
-                  ))}
-                </select>
                 <button
                   onClick={() => addExerciseToWorkout(workout.workout_id)}
                 >

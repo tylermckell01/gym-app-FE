@@ -7,15 +7,17 @@ export const useAuthInfo = () => {
 };
 
 export const AuthProvider = ({ children }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    localStorage.getItem("auth_token")
+  );
 
-  const login = () => {
+  const login = (token) => {
+    localStorage.setItem("auth_token", token);
     setIsLoggedIn(true);
   };
 
   const logout = () => {
     localStorage.removeItem("auth_token");
-
     setIsLoggedIn(false);
   };
 

@@ -9,7 +9,7 @@ export default function Header() {
         </NavLink>
 
         <NavLink to="/login" className="header-link">
-          Login
+          Login Page
         </NavLink>
 
         <NavLink to="/create-account" className="header-link">

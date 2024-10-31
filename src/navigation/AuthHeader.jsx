@@ -1,7 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { useAuthInfo } from "../context/AuthContext";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import Cookies from "js-cookie";
 
 export default function AuthHeader() {
   const history = useHistory();
@@ -9,8 +8,6 @@ export default function AuthHeader() {
 
   const handleLogout = () => {
     logout();
-    // Cookies.remove("auth_token");
-    // localStorage.removeItem("auth_token");
     history.push("/");
   };
 

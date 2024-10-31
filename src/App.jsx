@@ -5,17 +5,14 @@ import Header from "./navigation/Header";
 import AuthHeader from "./navigation/AuthHeader";
 import Footer from "./navigation/Footer";
 import DefaultContainer from "./routing/DefaultContainer";
-// import Cookies from "js-cookie";
 import { useAuthInfo } from "./context/AuthContext";
 
 function App() {
   const { isLoggedIn } = useAuthInfo();
-  // const authToken = Cookies.get("auth_token");
-  const authToken = localStorage.getItem("auth_token");
 
   return (
     <div className="App">
-      {authToken && isLoggedIn ? <AuthHeader /> : <Header />}
+      {isLoggedIn ? <AuthHeader /> : <Header />}
 
       <Route component={DefaultContainer} />
 

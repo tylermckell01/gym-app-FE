@@ -17,7 +17,6 @@ export default function NewWorkoutForm() {
   }, []);
 
   const fetchExercises = async () => {
-    // const authToken = Cookies.get("auth_token");
     const authToken = localStorage.getItem("auth_token");
 
     const response = await fetch("http://127.0.0.1:8086/exercises", {
@@ -50,7 +49,6 @@ export default function NewWorkoutForm() {
     console.log(formData);
     e.preventDefault();
 
-    // const authToken = Cookies.get("auth_token");
     let authToken = localStorage.getItem("auth_token");
 
     const response = await fetch("http://127.0.0.1:8086/workout", {
