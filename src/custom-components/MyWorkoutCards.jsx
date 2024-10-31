@@ -172,16 +172,19 @@ export default function MyWorkoutCards() {
       <div className="workout-info" key={workout.workout_id}>
         <div className="workout-name">
           {isEditing && editingWorkout.workout_id === workout.workout_id ? (
-            <input
-              type="text"
-              defaultValue={workout.workout_name}
-              onChange={(e) =>
-                setEditingWorkout({
-                  ...editingWorkout,
-                  workout_name: e.target.value,
-                })
-              }
-            />
+            <div>
+              Workout Name:
+              <input
+                type="text"
+                defaultValue={workout.workout_name}
+                onChange={(e) =>
+                  setEditingWorkout({
+                    ...editingWorkout,
+                    workout_name: e.target.value,
+                  })
+                }
+              />
+            </div>
           ) : (
             <span>Workout Name: {workout.workout_name}</span>
           )}
@@ -189,16 +192,19 @@ export default function MyWorkoutCards() {
 
         <div className="workout-description">
           {isEditing && editingWorkout.workout_id === workout.workout_id ? (
-            <input
-              type="text"
-              defaultValue={workout.description}
-              onChange={(e) =>
-                setEditingWorkout({
-                  ...editingWorkout,
-                  description: e.target.value,
-                })
-              }
-            />
+            <div>
+              Description:
+              <input
+                type="text"
+                defaultValue={workout.description}
+                onChange={(e) =>
+                  setEditingWorkout({
+                    ...editingWorkout,
+                    description: e.target.value,
+                  })
+                }
+              />
+            </div>
           ) : (
             <span>Description: {workout.description}</span>
           )}
@@ -206,13 +212,19 @@ export default function MyWorkoutCards() {
 
         <div className="workout-length">
           {isEditing && editingWorkout.workout_id === workout.workout_id ? (
-            <input
-              type="text"
-              defaultValue={workout.length}
-              onChange={(e) =>
-                setEditingWorkout({ ...editingWorkout, length: e.target.value })
-              }
-            />
+            <div>
+              Length (hrs):
+              <input
+                type="text"
+                defaultValue={workout.length}
+                onChange={(e) =>
+                  setEditingWorkout({
+                    ...editingWorkout,
+                    length: e.target.value,
+                  })
+                }
+              />
+            </div>
           ) : (
             <span>Length (hrs): {workout.length}</span>
           )}
@@ -273,11 +285,13 @@ export default function MyWorkoutCards() {
             ))}
             {isEditing && editingWorkout.workout_id === workout.workout_id && (
               <li>
-                <button
-                  onClick={() => addExerciseToWorkout(workout.workout_id)}
-                >
-                  Add Exercise
-                </button>
+                {
+                  <button
+                    onClick={() => addExerciseToWorkout(workout.workout_id)}
+                  >
+                    Add Exercise
+                  </button>
+                }
               </li>
             )}
           </ul>
