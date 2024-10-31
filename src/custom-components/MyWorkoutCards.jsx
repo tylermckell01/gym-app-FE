@@ -73,11 +73,6 @@ export default function MyWorkoutCards() {
     }
   };
 
-  const editWorkout = (workout) => {
-    setEditingWorkout(workout);
-    setIsEditing(true);
-  };
-
   const deleteWorkout = async (workout) => {
     let authToken = localStorage.getItem("auth_token");
 
@@ -100,18 +95,7 @@ export default function MyWorkoutCards() {
     }
   };
 
-  const editExercise = (workoutId, exerciseId) => {
-    setAddingExercise(false);
-    setExerciseEditState({ workoutId, exerciseId });
-    setSelectedExerciseId(exerciseId);
-  };
-
-  const cancelEditExercise = () => {
-    setExerciseEditState({});
-    setAddingExercise(false);
-  };
-
-  const saveExerciseEdit = async (workoutId, exerciseId) => {
+  const saveExerciseWorkoutEdit = async (workoutId, exerciseId) => {
     let authToken = localStorage.getItem("auth_token");
 
     await fetch("http://127.0.0.1:8086/workout/exercise", {
@@ -165,6 +149,22 @@ export default function MyWorkoutCards() {
     } else {
       console.error("Failed to add exercise to workout");
     }
+  };
+
+  const editWorkout = (workout) => {
+    setEditingWorkout(workout);
+    setIsEditing(true);
+  };
+
+  const editExercise = (workoutId, exerciseId) => {
+    setAddingExercise(false);
+    setExerciseEditState({ workoutId, exerciseId });
+    setSelectedExerciseId(exerciseId);
+  };
+
+  const cancelEditExercise = () => {
+    setExerciseEditState({});
+    setAddingExercise(false);
   };
 
   const renderWorkoutData = () => {
@@ -257,7 +257,7 @@ export default function MyWorkoutCards() {
                     </select>
                     <button
                       onClick={() =>
-                        saveExerciseEdit(
+                        saveExerciseWorkoutEdit(
                           workout.workout_id,
                           exercise.exercise_id
                         )
