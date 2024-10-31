@@ -8,6 +8,7 @@ export default function MyWorkoutCards() {
   const [selectedExerciseId, setSelectedExerciseId] = useState(null);
   const [exerciseEditState, setExerciseEditState] = useState({});
   const [isEditing, setIsEditing] = useState(false);
+  const [addingExercise, setAddingExercise] = useState(false);
 
   useEffect(() => {
     fetchWorkoutData();
@@ -100,12 +101,14 @@ export default function MyWorkoutCards() {
   };
 
   const editExercise = (workoutId, exerciseId) => {
+    setAddingExercise(false);
     setExerciseEditState({ workoutId, exerciseId });
     setSelectedExerciseId(exerciseId);
   };
 
   const cancelEditExercise = () => {
     setExerciseEditState({});
+    setAddingExercise(false);
   };
 
   const saveExerciseEdit = async (workoutId, exerciseId) => {
@@ -236,7 +239,8 @@ export default function MyWorkoutCards() {
             {workout.exercises.map((exercise) => (
               <li key={exercise.exercise_id}>
                 {exerciseEditState.workoutId === workout.workout_id &&
-                exerciseEditState.exerciseId === exercise.exercise_id ? (
+                exerciseEditState.exerciseId === exercise.exercise_id &&
+                !addingExercise ? (
                   <>
                     <select
                       onChange={(e) => setSelectedExerciseId(e.target.value)}
@@ -285,13 +289,35 @@ export default function MyWorkoutCards() {
             ))}
             {isEditing && editingWorkout.workout_id === workout.workout_id && (
               <li>
-                {
-                  <button
-                    onClick={() => addExerciseToWorkout(workout.workout_id)}
-                  >
+                {!addingExercise ? (
+                  <button onClick={() => setAddingExercise(true)}>
                     Add Exercise
                   </button>
-                }
+                ) : (
+                  <div>
+                    <select
+                      onChange={(e) => setSelectedExerciseId(e.target.value)}
+                      value={selectedExerciseId || ""}
+                    >
+                      <option value="" disabled>
+                        Select an exercise
+                      </option>
+                      {allExercises.map((ex) => (
+                        <option key={ex.exercise_id} value={ex.exercise_id}>
+                          {ex.exercise_name}
+                        </option>
+                      ))}
+                    </select>
+
+                    <button
+                      onClick={() => addExerciseToWorkout(workout.workout_id)}
+                    >
+                      Add
+                    </button>
+
+                    <button onClick={() => cancelEditExercise()}>Cancel</button>
+                  </div>
+                )}
               </li>
             )}
           </ul>
